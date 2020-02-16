@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { Application, Request, Response } from "express";
 
-import { userRouter } from "./routes/user";
+import { articleRouter } from "./routes/article";
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ const port: string = process.env.SERVER_PORT;
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/users", userRouter);
+app.use("/articles", articleRouter);
 
 if (port == "") {
     // tslint:disable-next-line:no-console

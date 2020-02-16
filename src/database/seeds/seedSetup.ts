@@ -1,10 +1,10 @@
-import { sampleUsers } from "./user";
-import { User, IUserModel } from "../models/user";
-import { createUser } from "../interactions/UserDB";
+import { sampleArticles } from "./article";
+import { Article, IArticleModel } from "../models/article";
+import { createArticle } from "../interactions/ArticleDB";
 
-export const seedUsers = async () => {
-    for (const sampleUser of sampleUsers) {
-        const userSeed: IUserModel = new User(sampleUser);
-        let user = await createUser(userSeed);
+export const seedArticles = async () => {
+    for (const sampleArticle of sampleArticles) {
+        const articleSeed: IArticleModel = new Article(sampleArticle);
+        let user = await createArticle(articleSeed);
     }
 };

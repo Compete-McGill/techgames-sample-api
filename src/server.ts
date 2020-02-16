@@ -1,11 +1,11 @@
 import { app, port } from "./app";
 import mongoose from "mongoose";
-import { seedUsers } from "./database/seeds/seedSetup";
+import { seedArticles } from "./database/seeds/seedSetup";
 
 const dbUsername = process.env.DB_USER
 const dbPassword = process.env.DB_PASS
 
-mongoose.connect(`mongodb://localhost:27017/wisp`, {
+mongoose.connect(`mongodb://localhost:27017/techgames-sample`, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true
@@ -14,7 +14,7 @@ mongoose.set("useCreateIndex", true);
 
 async function seed() {
     try {
-        await seedUsers();
+        await seedArticles();
         // tslint:disable-next-line:no-console
         console.log("Seeding successful");
     } catch (error) {
