@@ -45,18 +45,13 @@ const articleController = {
                 res.status(404).send({ status: 404, message: "Article not found" });
             else {
                 const articleObject: IArticle = {
-                        title: article.title,
-                        subtitle: article.subtitle,
-                        body: article.body,
-                        userId: article.userId,
-                        leadParagraph: article.leadParagraph,
-                        imageUrl: article.imageUrl,
-                        author: article.author,
-                        date: article.date,
-                        category: article.category
+                    title: article.title,
+                    subtitle: article.subtitle,
+                    body: article.body,
+                    userId: article.userId,
                 };
                 const updatedVariables: IArticle = {
-                        ...req.body,
+                    ...req.body,
                 };
                 const updatedArticle: IArticleModel = await updateArticle(articleId, updatedVariables);
                 res.status(200).send(updatedArticle);
