@@ -6,13 +6,8 @@ export interface IArticleModel extends IArticle, Document { }
 const articleSchema: Schema = new Schema({
     title: String,
     subtitle: String,
-    leadParagraph: String,
-    imageUrl: String,
     body: String,
-    author: String,
     userId: String,
-    date: String,
-    category: String
 },
     {
         timestamps: true

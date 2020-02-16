@@ -13,12 +13,8 @@ curl http://localhost:8081/articles/$ARTICLE_ID | jq .
 curl -X POST -H "Content-Type: application/json" http://localhost:8081/articles -d '{
   "title": "The title",
   "subtitle": "The subtitle",
-  "leadParagraph": "A lead paragraph",
-  "imageUrl": "The image url",
   "body": "The body",
   "userId": "USER_ID",
-  "date": "The creation or last modification date",
-  "category": "The category"
 }' | jq .
 
 NEW_ID='5e496da9fd09c94d8a97f623'
@@ -27,12 +23,8 @@ NEW_ID='5e496da9fd09c94d8a97f623'
 curl -X PUT -H "Content-Type: application/json" http://localhost:8081/articles/$NEW_ID -d '{
   "title": "The title!!!",
   "subtitle": "The subtitle!!",
-  "leadParagraph": "A lead paragraph",
-  "imageUrl": "The image url",
   "body": "The body",
   "userId": "USER_ID",
-  "date": "The creation or last modification date",
-  "category": "The category"
 }' | jq .
 
 # DELETE
