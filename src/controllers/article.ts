@@ -39,11 +39,22 @@ const articleController = {
     update: async (req: Request, res: Response) => {
         try {
             const { articleId } = req.params;
-            const article: IArticleModel = req.body
-            const updatedArticle: IArticleModel = await updateArticle(articleId, article);
-            if (!updatedArticle)
+            const article: IArticleModel = await getArticle(articleId)
+            if (!article)
                 res.status(404).send({ status: 404, message: "Article not found" });
-            res.status(200).send(updatedArticle);
+            else {
+                const articleObject: IArticle = {
+                        title: article.title,
+                        subtitle: article.subtitle,
+                        body: article.body,
+                        userId: article.userId,
+                };
+                const updatedVariables = {
+                        ...req.body,
+                };
+                const updatedArticle: IArticleModel = await updateArticle(articleId, updatedVariables);
+                res.status(200).send(updatedArticle);
+            }
         } catch (error) {
             res.status(500).send(error);
         }
