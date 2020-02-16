@@ -56,7 +56,8 @@ const articleController = {
                         category: article.category
                 };
                 const updatedVariables: IArticle = {
-                        ...req.body,
+                        ...articleObject,
+                        ...req.body
                 };
                 const updatedArticle: IArticleModel = await updateArticle(articleId, updatedVariables);
                 res.status(200).send(updatedArticle);
