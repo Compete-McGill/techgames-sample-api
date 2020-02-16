@@ -14,7 +14,7 @@ curl -X POST -H "Content-Type: application/json" http://localhost:8081/articles 
   "title": "The title",
   "subtitle": "The subtitle",
   "body": "The body",
-  "userId": "USER_ID",
+  "userId": "USER_ID"
 }' | jq .
 
 NEW_ID='5e496da9fd09c94d8a97f623'
@@ -24,7 +24,7 @@ curl -X PUT -H "Content-Type: application/json" http://localhost:8081/articles/$
   "title": "The title!!!",
   "subtitle": "The subtitle!!",
   "body": "The body",
-  "userId": "USER_ID",
+  "userId": "USER_ID"
 }' | jq .
 
 # DELETE
