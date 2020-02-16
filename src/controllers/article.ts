@@ -43,7 +43,7 @@ const articleController = {
             const updatedArticle: IArticleModel = await updateArticle(articleId, article);
             if (!updatedArticle)
                 res.status(404).send({ status: 404, message: "Article not found" });
-            res.status(200).send({ message: "Success" });
+            res.status(200).send(updatedArticle);
         } catch (error) {
             res.status(500).send(error);
         }
