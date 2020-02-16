@@ -62,7 +62,7 @@ const articleController = {
                         title: article.title,
                         subtitle: article.subtitle,
                         body: article.body,
-                        userId: article.userId,
+                        author: article.author,
                     };
                     const updatedVariables: IArticle = {
                         ...articleObject,

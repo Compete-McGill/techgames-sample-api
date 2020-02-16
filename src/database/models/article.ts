@@ -7,7 +7,7 @@ const articleSchema: Schema = new Schema({
     title: String,
     subtitle: String,
     body: String,
-    userId: String,
+    author: String,
 },
     {
         timestamps: true

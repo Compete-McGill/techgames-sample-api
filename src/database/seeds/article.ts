@@ -5,12 +5,12 @@ export const sampleArticles: IArticle[] = [
         title: "Article title",
         subtitle: "My subtitle",
         body: "my body blah blah",
-        userId: "dfklajsldfj",
+        author: "bob",
     },
     {
         title: "Article title2",
         subtitle: "My subtitle2",
         body: "my body blah blah2",
-        userId: "dfklajsldfj2",
+        author: "joe",
     }
 ]

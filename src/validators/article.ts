@@ -15,15 +15,16 @@ export function articleValidator(method: string): ValidationChain[] {
                 body("title", "Invalid or missing 'title'").exists().isString(),
                 body("subtitle", "Invalid or missing 'subtitle'").exists().isString(),
                 body("body", "Invalid or missing 'body'").exists().isString(),
-                body("userId", "Invalid or missing 'userId'").exists().isMongoId(),
+                body("author", "Invalid or missing 'author'").exists().isString(),
             ];
         }
         case "PUT /articles/:articleId": {
             return [
                 param("articleId", "Invalid or missing ':articleId'").exists().isMongoId(),
-                body("subtitle", "Invalid or missing 'subtitle'").exists().isString(),
-                body("body", "Invalid or missing 'body'").exists().isString(),
-                body("userId", "Invalid or missing 'userId'").optional().isMongoId(),
+                body("title", "Invalid or missing 'title'").optional().isString(),
+                body("subtitle", "Invalid or missing 'subtitle'").optional().isString(),
+                body("body", "Invalid or missing 'body'").optional().isString(),
+                body("author", "Invalid or missing 'author'").optional().isString(),
             ];
         }
         case "DELETE /articles/:articleId": {
