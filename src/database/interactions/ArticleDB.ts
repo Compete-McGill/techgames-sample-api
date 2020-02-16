@@ -14,7 +14,7 @@ export const getArticle = (articleId: string): Promise<IArticleModel> => {
 };
 
 export const updateArticle = (articleId: string, article: IArticle): Promise<IArticleModel> => {
-    return Article.findOneAndUpdate({ _id: articleId }, article).exec()
+    return Article.findOneAndUpdate({ _id: articleId }, article, { new: true }).exec()
 }
 
 export const deleteArticle = (articleId: string): Promise<IArticleModel> => {
