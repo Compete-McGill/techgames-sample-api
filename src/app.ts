@@ -21,4 +21,17 @@ if (port == "") {
     process.exit(1);
 }
 
+app.get("/status", (req: Request, res: Response) => {
+    res.status(200).send({
+        status: "Up"
+    })
+});
+
+app.use((req: Request, res: Response) => {
+    res.status(404).send({
+        status: 404,
+        message: "Invalid route"
+    });
+});
+
 export { app, port }
