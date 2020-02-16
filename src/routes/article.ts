@@ -9,4 +9,8 @@ articleRouter.get("/:articleId", articleController.show);
 
 articleRouter.post("/", articleController.create);
 
+articleRouter.put("/:articleId", articleController.update);
+
+articleRouter.delete("/:articleId", articleController.delete);
+
 export { articleRouter };

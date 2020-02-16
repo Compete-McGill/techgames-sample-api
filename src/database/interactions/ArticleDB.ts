@@ -12,3 +12,11 @@ export const getArticles = (): Promise<IArticleModel[]> => {
 export const getArticle = (articleId: string): Promise<IArticleModel> => {
     return Article.findOne({ _id: articleId }).exec();
 };
+
+export const updateArticle = (articleId: string, article: IArticle): Promise<IArticleModel> => {
+    return Article.findOneAndUpdate({ _id: articleId }, article).exec()
+}
+
+export const deleteArticle = (articleId: string): Promise<IArticleModel> => {
+    return Article.findByIdAndDelete(articleId).exec()
+}

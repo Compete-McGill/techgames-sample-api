@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getArticle, getArticles, createArticle } from "../database/interactions/ArticleDB";
+import { getArticle, getArticles, createArticle, updateArticle, deleteArticle } from "../database/interactions/ArticleDB";
 import { Article, IArticleModel } from "../database/models/article";
 
 const articleController = {
@@ -34,6 +34,35 @@ const articleController = {
             res.status(500).send(error);
         }
     },
+
+
+    update: async (req: Request, res: Response) => {
+        try {
+            const { articleId } = req.params;
+            const article: IArticleModel = req.body
+            const updatedArticle: IArticleModel = await updateArticle(articleId, article);
+            if (!updatedArticle)
+                res.status(404).send({ status: 404, message: "Article not found" });
+            res.status(200).send({ message: "Success" });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    },
+
+    delete: async (req: Request, res: Response) => {
+        try {
+            const { articleId } = req.params;
+            const article: IArticleModel = await deleteArticle(articleId);
+            if (!article)
+                res.status(404).send({ status: 404, message: "Article not found" });
+            res.status(200).send({
+                message: "Article successfully deleted."
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
+
 };
 
 
