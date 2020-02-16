@@ -9,7 +9,7 @@ import { articleRouter } from "./routes/article";
 dotenv.config();
 
 const app: Application = express();
-const port: string = process.env.SERVER_PORT;
+const port = process.env.SERVER_PORT;
 
 app.use(bodyParser.json());
 app.use(cors());
