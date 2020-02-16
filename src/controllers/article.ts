@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getArticle, getArticles, createArticle, updateArticle, deleteArticle } from "../database/interactions/ArticleDB";
 import { Article, IArticleModel } from "../database/models/article";
+import { IArticle } from "../interfaces/IArticle";
 
 const articleController = {
 
@@ -48,8 +49,13 @@ const articleController = {
                         subtitle: article.subtitle,
                         body: article.body,
                         userId: article.userId,
+                        leadParagraph: article.leadParagraph,
+                        imageUrl: article.imageUrl,
+                        author: article.author,
+                        date: article.date,
+                        category: article.category
                 };
-                const updatedVariables = {
+                const updatedVariables: IArticle = {
                         ...req.body,
                 };
                 const updatedArticle: IArticleModel = await updateArticle(articleId, updatedVariables);
