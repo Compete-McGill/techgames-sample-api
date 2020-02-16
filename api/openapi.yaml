@@ -1,61 +1,58 @@
 openapi: "3.0.2"
 info:
   version: 0.0.0
-  title: WISP Users
+  title: Sample API Tech Games
   license:
     name: MIT
 paths:
-  /users:
+  /api/articles:
     get:
-      summary: List all users
-      operationId: listUsers
+      summary: List all articles
+      operationId: listArticles
       tags:
-        - users
-      parameters:
-        - name: limit
-          in: query
-          description: How many items to return at one time (max 100)
-          required: false
-          schema:
-            type: integer
-            format: int32
+        - articles
       responses:
         '200':
-          description: An array of users
+          description: An array of articles
           content:
             application/json:    
               schema:
-                $ref: "#/components/schemas/Users"
+                $ref: "#/components/schemas/Articles"
     post:
-      summary: Create a user
-      operationId: createUser
+      summary: Create an article
+      operationId: createArticle
       tags:
-        - users
+        - articles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
       responses:
         '201':
-          description: Returns the created user
+          description: Returns success and id
           content:
             application/json:    
               schema:
-                $ref: "#/components/schemas/User"
-        '409':
-          description: User already exists with given email
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+                type: object
+                properties: 
+                  message:
+                    type: string
+                  id:
+                    type: string
                 
-  /users/{userId}:
+  /api/articles/{articleId}:
     get:
-      summary: Info for a specific user
-      operationId: showUserById
+      summary: Info for a specific article
+      operationId: showArticleById
       tags:
-        - users
+        - articles
       parameters:
-        - name: userId
+        - name: articleId
           in: path
           required: true
-          description: The id of the user to retrieve
+          description: The id of the article to retrieve
           schema:
             type: string
       responses:
@@ -64,65 +61,93 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
-        '404':
-          description: Requested user not found
+                $ref: "#/components/schemas/Article"
+                
+    delete:
+      summary: Delete a specific article
+      operationId: deleteArticle
+      tags:
+        - articles
+      parameters:
+        - name: articleId
+          in: path
+          required: true
+          description: The id of the article to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Article succesfully deleted." 
+    put:
+      summary: Update a specific article
+      operationId: updateArticle
+      tags:
+        - articles
+      parameters:
+        - name: articleId
+          in: path
+          required: true
+          description: The id of the article to retrieve
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Success" 
+        
 components:
   schemas:
-    User:
+    Article:
       type: object
       required:
         - id
-        - email
-        - username
       properties:
         id:
           type: string
-        email:
+        title:
           type: string
-        username:
+        subtitle:
           type: string
-        role:
+        leadParagraph:
           type: string
-          example: "admin | user"
-        info:
-          type: object
-          properties:
-            major:
-              type: string
-            year:
-              type: string
-            school:
-              type: string
-            bio:
-              type: string
-            profilePhoto:
-              type: string
-              example: link to S3 bucket
-        createdAt:
+        imageUrl:
           type: string
-        updatedAt:
+        body:
           type: string
-        problems:
-          type: array
-          items:
-            $ref: "#/components/schemas/Problem"
-              
-    Users:
+        author:
+          type: string
+        userId:
+          type: string
+        date:
+          type: string
+        category:
+          type: string
+    Articles:
       type: array
       items:
-        $ref: "#/components/schemas/User"
-    Problem:
-      type: object
-      properties:
-        problemId:
-          type: string
-        isComplete:
-          type: boolean
+        $ref: "#/components/schemas/Article"
     Error:
       type: object
       required:
