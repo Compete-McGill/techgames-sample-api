@@ -71,8 +71,11 @@ const articleController = {
                     const updatedArticle: IArticleModel = await updateArticle(articleId, updatedVariables);
                     res.status(200).send(updatedArticle);
                 }
+            } catch (error) {
+                res.status(500).send(error);
             }
-    }
+        }
+
     },
 
     delete: async (req: Request, res: Response) => {
