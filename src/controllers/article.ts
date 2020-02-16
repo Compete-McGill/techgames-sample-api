@@ -51,7 +51,12 @@ const articleController = {
                     userId: article.userId,
                 };
                 const updatedVariables: IArticle = {
+<<<<<<< HEAD
                     ...req.body,
+=======
+                        ...articleObject,
+                        ...req.body
+>>>>>>> 0b42a0667d32561396d5e306271a811896d6ce2a
                 };
                 const updatedArticle: IArticleModel = await updateArticle(articleId, updatedVariables);
                 res.status(200).send(updatedArticle);
