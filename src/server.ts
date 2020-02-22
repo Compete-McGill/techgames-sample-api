@@ -5,7 +5,7 @@ import { seedArticles } from "./database/seeds/seedSetup";
 const dbUsername = process.env.DB_USER
 const dbPassword = process.env.DB_PASS
 
-mongoose.connect(`mongodb://mongo:27017/techgames-sample`, {
+mongoose.connect(`mongodb://localhost:27017/techgames-sample`, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true
